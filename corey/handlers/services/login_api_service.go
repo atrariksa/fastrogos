@@ -1,7 +1,7 @@
 package services
 
 import (
-	"github.com/atrariksa/gocosmos/corey/configs"
+	"github.com/atrariksa/fastrogos/corey/configs"
 	"github.com/sirupsen/logrus"
 )
 

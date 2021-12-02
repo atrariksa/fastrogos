@@ -3,7 +3,7 @@ package handlers
 import (
 	"net/http"
 
-	"github.com/atrariksa/gocosmos/corey/configs"
+	"github.com/atrariksa/fastrogos/corey/configs"
 	"github.com/go-chi/chi/v5"
 	"github.com/sirupsen/logrus"
 	"golang.org/x/tools/go/packages"

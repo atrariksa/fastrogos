@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/atrariksa/gocosmos/corey/configs"
+	"github.com/atrariksa/fastrogos/corey/configs"
 )
 
 func DefaultResponseHeadersHandler(cfg *configs.Config) func(next http.Handler) http.Handler {

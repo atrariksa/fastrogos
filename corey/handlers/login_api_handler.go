@@ -3,8 +3,8 @@ package handlers
 import (
 	"net/http"
 
-	"github.com/atrariksa/gocosmos/corey/configs"
-	"github.com/atrariksa/gocosmos/corey/handlers/services"
+	"github.com/atrariksa/fastrogos/corey/configs"
+	"github.com/atrariksa/fastrogos/corey/handlers/services"
 	"github.com/sirupsen/logrus"
 )
 

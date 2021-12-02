@@ -1,4 +1,4 @@
-module github.com/atrariksa/gocosmos/corey
+module github.com/atrariksa/fastrogos/corey
 
 go 1.16
 

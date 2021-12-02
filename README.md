@@ -1,3 +1,3 @@
-# gocosmos
+# fastrogos
 golang content management system
-![alt gocosmos](https://github.com/atrariksa/gocosmos/blob/main/docs/images/gocosmos.png)
+![alt fastrogos](https://github.com/atrariksa/fastrogos/blob/main/docs/images/fastrogos.png)

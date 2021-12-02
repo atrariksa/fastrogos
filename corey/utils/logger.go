@@ -6,7 +6,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/atrariksa/gocosmos/corey/configs"
+	"github.com/atrariksa/fastrogos/corey/configs"
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/sirupsen/logrus"
 )
