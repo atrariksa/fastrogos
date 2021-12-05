@@ -9,7 +9,7 @@ import (
 )
 
 const (
-	DuplicateKey string = "1062"
+	DuplicateKey string = "UNIQUE constraint failed"
 )
 
 type IUserRepo interface {
