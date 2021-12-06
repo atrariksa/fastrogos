@@ -11,6 +11,9 @@ A user service.
     go run main.go server or ./rula server
 5.  open hostname/swagger/index.html on browser to select apis
 
-# How to generate docs
+# How to generate docs and api client
 1. prepare annotations above handlers
-2. run go generate ./...
+2. run go generate ./cmd_tools_imports.go
+
+# How to run blackbox (bdd style tests)
+1. run go generate ./blackbox
