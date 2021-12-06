@@ -29,8 +29,9 @@ func (cuh *CreateUserHandler) SetService(svc services.IUserService) {
 // @Accept  json
 // @Produce  json
 // @Param   models.CreateUserReq  body models.CreateUserReq true  "CreateUserReq"
-// @Success 200 {object} models.Response
+// @Success 201 {object} models.Response
 // @Failure 400 {object} models.Response
+// @Failure 409 {object} models.Response
 // @Router /user/ [post]
 func (cuh *CreateUserHandler) Handle(w http.ResponseWriter, r *http.Request) {
 	var req models.CreateUserReq

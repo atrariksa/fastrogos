@@ -3,6 +3,7 @@ package main
 //go:generate go run github.com/swaggo/swag/cmd/swag init
 import (
 	"context"
+	"encoding/json"
 	"flag"
 	"fmt"
 	"log"
@@ -41,6 +42,8 @@ func main() {
 		server()
 	case "migrate":
 		migrate(os.Args)
+	case "write_docs":
+		writeDocsJSON()
 	default:
 		log.Println(fmt.Sprintf(`Unknown command "%v". %v`, command, cmdMessage))
 	}
@@ -116,4 +119,32 @@ func migrate([]string) {
 	dbWrite := drivers.NewDBClient(cfg)
 	m := migrations.Migrator{DB: dbWrite}
 	m.MigrateUp()
+}
+
+func writeDocsJSON() {
+	cfg := configs.Get()
+
+	dataByte, err := os.ReadFile("./docs/swagger.json")
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	m := make(map[string]interface{})
+	json.Unmarshal(dataByte, &m)
+
+	sInfo := m["info"]
+	inf := sInfo.(map[string]interface{})
+	inf["title"] = "Rula"
+	inf["version"] = "0.0.1"
+	m["host"] = cfg.App.Hostname
+	m["basePath"] = "/"
+
+	of, err := os.Create("./docs/rula.json")
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	mByte, err := json.Marshal(&m)
+	of.Write(mByte)
 }

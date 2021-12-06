@@ -80,3 +80,23 @@ func Get() *Config {
 
 	return &conf
 }
+
+// GetFrom are responsible to load env and get data an return the struct
+func GetFrom(path string) *Config {
+	viper.SetConfigFile(path)
+	err := viper.ReadInConfig()
+
+	if err != nil {
+		log.Fatal().Err(err).Msg("Failed reading config file")
+	}
+
+	once.Do(func() {
+		log.Info().Msg("Service configuration initialized.")
+		err = viper.Unmarshal(&conf)
+		if err != nil {
+			log.Fatal().Err(err).Msg("")
+		}
+	})
+
+	return &conf
+}

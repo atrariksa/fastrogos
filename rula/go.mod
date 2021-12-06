@@ -4,9 +4,15 @@ go 1.16
 
 require (
 	github.com/asaskevich/govalidator v0.0.0-20210307081110-f21760c49a8d
+	github.com/cucumber/godog v0.12.2
 	github.com/go-chi/chi/v5 v5.0.7
 	github.com/go-chi/cors v1.2.0
+	github.com/go-openapi/errors v0.20.1
+	github.com/go-openapi/runtime v0.20.0
+	github.com/go-openapi/strfmt v0.20.3
+	github.com/go-openapi/swag v0.19.15
 	github.com/go-redis/redis v6.15.9+incompatible
+	github.com/go-swagger/go-swagger v0.28.0
 	github.com/google/uuid v1.3.0
 	github.com/onsi/ginkgo v1.16.5 // indirect
 	github.com/onsi/gomega v1.17.0 // indirect

@@ -37,7 +37,7 @@ func NewHandler(cfg *configs.Config, log *logrus.Logger) *Handler {
 	}
 }
 
-//  example
+// example
 // @Summary
 // @Description
 // @ID general
@@ -84,6 +84,7 @@ type RespWriter struct {
 }
 
 func (rw *RespWriter) Write(w http.ResponseWriter, httpCode int, resp interface{}) {
+	w.Header().Add("Content-type", "application/json")
 	w.WriteHeader(httpCode)
 	rByte, _ := json.Marshal(&resp)
 	w.Write(rByte)
@@ -147,7 +148,10 @@ func WireHandlers(r *chi.Mux, cfg *configs.Config, log *logrus.Logger) {
 }
 
 func setupSwagger(r *chi.Mux, cfg *configs.Config, log *logrus.Logger) {
-	docs.SwaggerInfo.Title = "User Profile"
+	docs.SwaggerInfo.Title = "Rula"
+	docs.SwaggerInfo.Version = "0.0.1"
+	docs.SwaggerInfo.BasePath = "/"
+	docs.SwaggerInfo.Host = cfg.App.Hostname
 	swaggerURL := fmt.Sprintf("%s/swagger/doc.json", "http://"+cfg.App.Hostname)
 	r.Get("/swagger/*", httpSwagger.Handler(httpSwagger.URL(swaggerURL)))
 	log.Info("swagger url : ", swaggerURL)
