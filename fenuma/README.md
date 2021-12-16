@@ -1,3 +1,3 @@
 # FENUMA
 
-Fastrogs Frontend
+Fastrogos Frontend
