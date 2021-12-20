@@ -1,6 +1,8 @@
 package services
 
 import (
+	"context"
+
 	"github.com/atrariksa/fastrogos/fenuma/configs"
 	"github.com/sirupsen/logrus"
 )
@@ -18,6 +20,13 @@ type LoginAPIService struct {
 	log *logrus.Logger
 }
 
-func (las *LoginAPIService) Login(req LoginAPIRequest) {
+func GetLoginAPIService(cfg *configs.Config, log *logrus.Logger) *LoginAPIService {
+	return &LoginAPIService{
+		cfg: cfg,
+		log: log,
+	}
+}
 
+func (las *LoginAPIService) Process(ctx context.Context, req interface{}) interface{} {
+	return nil
 }

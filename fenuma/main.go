@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"encoding/json"
 	"flag"
 	"fmt"
 	"net/http"
@@ -11,6 +12,7 @@ import (
 	"time"
 
 	"github.com/atrariksa/fastrogos/fenuma/configs"
+	"github.com/atrariksa/fastrogos/fenuma/constants"
 	"github.com/atrariksa/fastrogos/fenuma/handlers"
 	"github.com/atrariksa/fastrogos/fenuma/middlewares"
 	"github.com/atrariksa/fastrogos/fenuma/utils"
@@ -88,4 +90,32 @@ func setupApis(cfg *configs.Config, logger *logrus.Logger) http.Handler {
 	}
 
 	return r
+}
+
+func writeDocsJSON() {
+	cfg := configs.Get()
+
+	dataByte, err := os.ReadFile("./docs/swagger.json")
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	m := make(map[string]interface{})
+	json.Unmarshal(dataByte, &m)
+
+	sInfo := m["info"]
+	inf := sInfo.(map[string]interface{})
+	inf["title"] = constants.Fenuma
+	inf["version"] = constants.Version
+	m["host"] = cfg.App.Hostname
+	m["basePath"] = "/"
+
+	of, err := os.Create("./docs/" + constants.Fenuma + ".json")
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	mByte, err := json.Marshal(&m)
+	of.Write(mByte)
 }

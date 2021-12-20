@@ -1,18 +1,17 @@
 package handlers
 
+//go:generate go run github.com/swaggo/swag/cmd/swag init
 import (
 	"net/http"
 
+	apiutils "github.com/atrariksa/api_utils"
 	"github.com/atrariksa/fastrogos/fenuma/configs"
+	"github.com/atrariksa/fastrogos/fenuma/handlers/services"
 	"github.com/atrariksa/fastrogos/fenuma/utils"
 	"github.com/go-chi/chi/v5"
 	"github.com/sirupsen/logrus"
 	"golang.org/x/tools/go/packages"
 )
-
-type IHandler interface {
-	Handle(w http.ResponseWriter, r *http.Request)
-}
 
 type ChiMidleware struct {
 	Packages *[]packages.Package
@@ -28,9 +27,12 @@ func WireHandlers(r *chi.Mux, cfg *configs.Config, log *logrus.Logger) {
 	loginPageHandler := NewLoginPageHandler(cfg, htmlTemplates, log)
 	r.Get("/login", loginPageHandler.Handle)
 
-	r.Route("/api", func(r chi.Router) {
-		r.Post("/login", func(rw http.ResponseWriter, r *http.Request) {
+	dh := apiutils.GetDefaultHandler()
+	loginAPIHandler := NewLoginAPIHandler(cfg, log)
+	loginAPIHandler.DefaultHttpHandler = dh
+	loginAPIHandler.IDefaultService = services.GetLoginAPIService(cfg, log)
 
-		})
+	r.Route("/api", func(r chi.Router) {
+		r.Post("/login", loginAPIHandler.Handle)
 	})
 }
