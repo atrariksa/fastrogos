@@ -1,10 +1,12 @@
 package main
 
+//go:generate go run github.com/swaggo/swag/cmd/swag init
 import (
 	"context"
 	"encoding/json"
 	"flag"
 	"fmt"
+	"log"
 	"net/http"
 	"os"
 	"os/signal"
@@ -24,6 +26,28 @@ import (
 )
 
 func main() {
+
+	cmdMessage :=
+		`
+	Please use following commands :
+	1. use "migrate" to migrate tables
+	2. use "server" to run service
+	`
+	if len(os.Args) == 1 {
+		log.Fatalln(cmdMessage)
+	}
+	command := os.Args[1]
+	switch command {
+	case "server":
+		server()
+	case "write_docs":
+		writeDocsJSON()
+	default:
+		log.Println(fmt.Sprintf(`Unknown command "%v". %v`, command, cmdMessage))
+	}
+}
+
+func server() {
 
 	cfg := configs.Get()
 

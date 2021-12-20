@@ -1,4 +1,4 @@
-package payloads
+package models
 
 type LoginReq struct {
 	Username string `json:"username"`

@@ -2,8 +2,10 @@ package services
 
 import (
 	"context"
+	"net/http"
 
 	"github.com/atrariksa/fastrogos/fenuma/configs"
+	"github.com/atrariksa/fastrogos/fenuma/models"
 	"github.com/sirupsen/logrus"
 )
 
@@ -28,5 +30,5 @@ func GetLoginAPIService(cfg *configs.Config, log *logrus.Logger) *LoginAPIServic
 }
 
 func (las *LoginAPIService) Process(ctx context.Context, req interface{}) interface{} {
-	return nil
+	return models.SuccessResp(http.StatusOK, "Success")
 }
