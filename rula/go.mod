@@ -13,6 +13,7 @@ require (
 	github.com/go-openapi/swag v0.19.15
 	github.com/go-redis/redis v6.15.9+incompatible
 	github.com/go-swagger/go-swagger v0.28.0
+	github.com/golang/mock v1.6.0
 	github.com/google/uuid v1.3.0
 	github.com/onsi/ginkgo v1.16.5 // indirect
 	github.com/onsi/gomega v1.17.0 // indirect
