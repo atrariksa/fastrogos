@@ -11,10 +11,10 @@ import (
 )
 
 func GetRulaClient() *apiclient.Rula {
-	cfg := configs.GetFrom("../rula.env")
+	cfg := configs.GetFrom("../../.env")
 
 	// create the transport
-	transport := httptransport.New(cfg.App.Hostname, "", nil)
+	transport := httptransport.New(cfg.Rula.Hostname, "", nil)
 	transport.Debug = true
 
 	// create the API client, with the transport

@@ -61,6 +61,10 @@ type Config struct {
 			}
 		}
 	}
+
+	Rula struct {
+		Hostname string `mapstructure:"HOSTNAME"`
+	} `mapstructure:"RULA"`
 }
 
 var (
