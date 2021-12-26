@@ -30,8 +30,8 @@ func main() {
 	cmdMessage :=
 		`
 	Please use following commands :
-	1. use "migrate" to migrate tables
-	2. use "server" to run service
+	1. use "server" to run service
+	2. use "write_docs" to migrate tables
 	`
 	if len(os.Args) == 1 {
 		log.Fatalln(cmdMessage)
