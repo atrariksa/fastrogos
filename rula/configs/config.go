@@ -17,15 +17,6 @@ type Config struct {
 			GracePeriodSeconds int64 `mapstructure:"GRACE_PERIOD_SECONDS"`
 		} `mapstructure:"SHUTDOWN"`
 
-		CORS struct {
-			Enable           bool     `mapstructure:"ENABLE"`
-			AllowedOrigins   []string `mapstructure:"ALLOWED_ORIGINS"`
-			AllowedMethods   []string `mapstructure:"ALLOWED_METHODS"`
-			AllowedHeaders   []string `mapstructure:"ALLOWED_HEADERS"`
-			AllowCredentials bool     `mapstructure:"ALLOW_CREDENTIALS"`
-			MaxAgeSeconds    int      `mapstructure:"MAX_AGE_SECONDS"`
-		} `mapstructure:"CORS"`
-
 		DefaultRespHeaders struct {
 			XFrameOptions       string   `mapstructure:"X_FRAME_OPTIONS"`
 			XContentTypeOptions string   `mapstructure:"X_CONTENT_TYPE_OPTIONS"`

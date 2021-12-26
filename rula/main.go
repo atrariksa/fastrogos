@@ -21,7 +21,6 @@ import (
 	"github.com/atrariksa/fastrogos/rula/utils"
 	"github.com/go-chi/chi/v5"
 	chi_middleware "github.com/go-chi/chi/v5/middleware"
-	"github.com/go-chi/cors"
 	"github.com/sirupsen/logrus"
 )
 
@@ -107,7 +106,6 @@ func setupApis(cfg *configs.Config, logger *logrus.Logger) http.Handler {
 	r.Use(loggerHandler)
 	r.Use(chi_middleware.Recoverer)
 	r.Use(middlewares.DefaultResponseHeadersHandler(cfg))
-	r.Use(cors.Handler(utils.GetCorsOptions(cfg)))
 
 	handlers.WireHandlers(r, cfg, logger)
 
