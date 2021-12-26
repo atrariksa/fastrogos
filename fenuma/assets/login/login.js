@@ -5,24 +5,20 @@ const loginErrorMsgHolder = document.getElementById("login-error-msg-holder")
 
 loginButton.addEventListener("click", (e) => {
     e.preventDefault();
-    const email = loginForm.email.value;
+    const username = loginForm.username.value;
     const password = loginForm.password.value;
 
-    if (email === "user" && password === "web_dev") {
-        alert("You have successfully logged in.");
-        location.reload();
-    } else {
-        let errorMessageP = document.createElement("p")
-        errorMessageP.setAttribute("id", "login-error-msg")
-        let errorMessageString = document.createTextNode("Invalid email and/or password")
-        errorMessageP.append(errorMessageString)
-        childCount = loginErrorMsgHolder.childElementCount
-        if (childCount===0) {
-            loginErrorMsgHolder.append(errorMessageP)
-        }
-    }
-
-    fetch("http://localhost:7389/api/login", { method: 'POST', redirect: 'follow'})
+    fetch("http://localhost:7389/api/login", {
+        method: 'POST',
+        headers: {
+            "Content-Type":"application/json"
+        },
+        redirect: 'follow',
+        body: JSON.stringify({
+            "username":username,
+            "password":password
+        })
+    })
     .then(response => {
         if (response.redirected) {
             window.location.href = response.url;
@@ -39,5 +35,13 @@ loginButton.addEventListener("click", (e) => {
     })
     .catch(function(err) {
         console.info("Login Failed : " + err);
+        let errorMessageP = document.createElement("p")
+        errorMessageP.setAttribute("id", "login-error-msg")
+        let errorMessageString = document.createTextNode("Invalid username and/or password")
+        errorMessageP.append(errorMessageString)
+        childCount = loginErrorMsgHolder.childElementCount
+        if (childCount===0) {
+            loginErrorMsgHolder.append(errorMessageP)
+        }
     });
 })

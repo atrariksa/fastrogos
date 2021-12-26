@@ -5,14 +5,10 @@ import (
 	"net/http"
 
 	"github.com/atrariksa/fastrogos/fenuma/configs"
+	"github.com/atrariksa/fastrogos/fenuma/handlers/client_services"
 	"github.com/atrariksa/fastrogos/fenuma/models"
 	"github.com/sirupsen/logrus"
 )
-
-type LoginAPIRequest struct {
-	Email    string `json:"email"`
-	Password string `json:"password"`
-}
 
 type LoginAPIResponse struct {
 }
@@ -30,5 +26,10 @@ func GetLoginAPIService(cfg *configs.Config, log *logrus.Logger) *LoginAPIServic
 }
 
 func (las *LoginAPIService) Process(ctx context.Context, req interface{}) interface{} {
-	return models.SuccessResp(http.StatusOK, "Success")
+	loginReq := req.(models.LoginReq)
+	resp, err := client_services.Login(loginReq)
+	if err != nil {
+		return models.ErrGeneralResp()
+	}
+	return models.SuccessResp(http.StatusOK, resp.Payload.Message)
 }
