@@ -26,6 +26,9 @@ func WireHandlers(r *chi.Mux, cfg *configs.Config, log *logrus.Logger) {
 	loginPageHandler := NewLoginPageHandler(cfg, htmlTemplates, log)
 	r.Get("/login", loginPageHandler.Handle)
 
+	dashboardPageHandler := NewDashboardPageHandler(cfg, htmlTemplates, log)
+	r.Get("/dashboard", dashboardPageHandler.Handle)
+
 	dh := apiutils.GetDefaultHandler()
 	loginAPIHandler := NewLoginAPIHandler(cfg, log)
 	loginAPIHandler.DefaultHttpHandler = dh
