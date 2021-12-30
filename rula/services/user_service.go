@@ -37,6 +37,7 @@ func (us *UserService) Create(req models.CreateUserReq) (resp models.Response) {
 	newUser := models.User{
 		Username: req.Username,
 		Email:    req.Email,
+		Role:     req.Role,
 	}
 	hashedPassword, err := us.Hash(req.Password)
 	if err != nil {
@@ -65,6 +66,7 @@ func (us *UserService) Update(req models.UpdateUserReq) (resp models.Response) {
 		ID:       uint(req.ID),
 		Username: req.Username,
 		Email:    req.Email,
+		Role:     req.Role,
 	}
 	hashedPassword, err := us.Hash(req.Password)
 	if err != nil {

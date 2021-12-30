@@ -41,5 +41,11 @@ func (ls *LoginService) Login(req models.LoginReq) (resp models.Response) {
 		return
 	}
 	resp = models.SuccessResp(http.StatusOK, "Login success")
+	resp.Data = models.UserData{
+		ID:       user.ID,
+		Username: user.Username,
+		Email:    user.Email,
+		Role:     user.Role,
+	}
 	return
 }

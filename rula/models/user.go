@@ -11,3 +11,10 @@ type User struct {
 	UpdatedAt time.Time `gorm:"index:idx_updated_at"`
 	CreatedAt time.Time `gorm:"index:idx_created_at"`
 }
+
+type UserData struct {
+	ID       uint   `json:"id"`
+	Username string `json:"username"`
+	Email    string `json:"email"`
+	Role     string `json:"role"`
+}
