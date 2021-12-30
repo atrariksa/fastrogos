@@ -17,14 +17,14 @@ import (
 // swagger:model models.CreateUserReq
 type ModelsCreateUserReq struct {
 
-	// address
-	Address string `json:"address,omitempty"`
-
 	// email
 	Email string `json:"email,omitempty"`
 
 	// password
 	Password string `json:"password,omitempty"`
+
+	// role
+	Role string `json:"role,omitempty"`
 
 	// username
 	Username string `json:"username,omitempty"`

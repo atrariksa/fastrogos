@@ -5,16 +5,15 @@ import "net/http"
 type CreateUserReq struct {
 	Username string `json:"username" valid:"required~Username cannot not be empty"`
 	Email    string `json:"email" valid:"email~Please fill valid email"`
-	Address  string `json:"address" valid:"required~Address cannot be empty"`
+	Role     string `json:"role" valid:"required~Role cannot be empty"`
 	Password string `json:"password" valid:"required~Password cannot be empty"`
 }
 
 type UpdateUserReq struct {
 	ID       uint32 `json:"id" valid:"required~ID cannot not be empty"`
-	UserID   string `json:"user_id" valid:"required~Username cannot not be empty"`
 	Username string `json:"username" valid:"required~Username cannot not be empty"`
 	Email    string `json:"email" valid:"email~Please fill valid email"`
-	Address  string `json:"address" valid:"required~Address cannot be empty"`
+	Role     string `json:"role" valid:"required~Role cannot be empty"`
 	Password string `json:"password" valid:"required~Password cannot be empty"`
 }
 

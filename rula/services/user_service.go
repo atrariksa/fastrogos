@@ -8,7 +8,6 @@ import (
 	"github.com/atrariksa/fastrogos/rula/errs"
 	"github.com/atrariksa/fastrogos/rula/models"
 	"github.com/atrariksa/fastrogos/rula/repos"
-	"github.com/atrariksa/fastrogos/rula/utils"
 	"github.com/sirupsen/logrus"
 	"golang.org/x/crypto/bcrypt"
 )
@@ -36,10 +35,8 @@ func NewUserService(cfg *configs.Config, log *logrus.Logger) UserService {
 
 func (us *UserService) Create(req models.CreateUserReq) (resp models.Response) {
 	newUser := models.User{
-		UserID:   utils.NewUUIDString(),
 		Username: req.Username,
 		Email:    req.Email,
-		Address:  req.Address,
 	}
 	hashedPassword, err := us.Hash(req.Password)
 	if err != nil {
@@ -66,10 +63,8 @@ func (us *UserService) Create(req models.CreateUserReq) (resp models.Response) {
 func (us *UserService) Update(req models.UpdateUserReq) (resp models.Response) {
 	updateData := models.User{
 		ID:       uint(req.ID),
-		UserID:   req.UserID,
 		Username: req.Username,
 		Email:    req.Email,
-		Address:  req.Address,
 	}
 	hashedPassword, err := us.Hash(req.Password)
 	if err != nil {

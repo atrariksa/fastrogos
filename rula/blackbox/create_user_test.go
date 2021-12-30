@@ -76,7 +76,7 @@ func sendCreateUserRequest(client *apiclient.Rula, params map[string]interface{}
 
 	createUserParam := operations.NewCreateUserParams()
 	createUserParam.ModelsCreateUserReq = &models.ModelsCreateUserReq{
-		Address:  ToString(params["address"]),
+		Role:     ToString(params["role"]),
 		Email:    ToString(params["email"]),
 		Password: ToString(params["password"]),
 		Username: ToString(params["username"]),

@@ -4,8 +4,8 @@ Feature: create user
 
   Scenario: Create New User
     When I send create user request with data by map
-      |username |email          |address  |password   |
-      |abal11311313     |abal11311313@email.com |Kuningan |mysecretpw |
+      |username |email          |role  |password   |
+      |abal     |abal@email.com |ADMIN |mysecretpw |
     Then the response must match data by map
       |code     |message        |
       |00000    |User created   |

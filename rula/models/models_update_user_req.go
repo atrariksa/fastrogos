@@ -17,9 +17,6 @@ import (
 // swagger:model models.UpdateUserReq
 type ModelsUpdateUserReq struct {
 
-	// address
-	Address string `json:"address,omitempty"`
-
 	// email
 	Email string `json:"email,omitempty"`
 
@@ -29,8 +26,8 @@ type ModelsUpdateUserReq struct {
 	// password
 	Password string `json:"password,omitempty"`
 
-	// user id
-	UserID string `json:"user_id,omitempty"`
+	// role
+	Role string `json:"role,omitempty"`
 
 	// username
 	Username string `json:"username,omitempty"`

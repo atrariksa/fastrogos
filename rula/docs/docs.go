@@ -207,13 +207,13 @@ var doc = `{
         "models.CreateUserReq": {
             "type": "object",
             "properties": {
-                "address": {
-                    "type": "string"
-                },
                 "email": {
                     "type": "string"
                 },
                 "password": {
+                    "type": "string"
+                },
+                "role": {
                     "type": "string"
                 },
                 "username": {
@@ -255,9 +255,6 @@ var doc = `{
         "models.UpdateUserReq": {
             "type": "object",
             "properties": {
-                "address": {
-                    "type": "string"
-                },
                 "email": {
                     "type": "string"
                 },
@@ -267,7 +264,7 @@ var doc = `{
                 "password": {
                     "type": "string"
                 },
-                "user_id": {
+                "role": {
                     "type": "string"
                 },
                 "username": {

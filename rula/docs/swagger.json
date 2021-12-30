@@ -188,13 +188,13 @@
         "models.CreateUserReq": {
             "type": "object",
             "properties": {
-                "address": {
-                    "type": "string"
-                },
                 "email": {
                     "type": "string"
                 },
                 "password": {
+                    "type": "string"
+                },
+                "role": {
                     "type": "string"
                 },
                 "username": {
@@ -236,9 +236,6 @@
         "models.UpdateUserReq": {
             "type": "object",
             "properties": {
-                "address": {
-                    "type": "string"
-                },
                 "email": {
                     "type": "string"
                 },
@@ -248,7 +245,7 @@
                 "password": {
                     "type": "string"
                 },
-                "user_id": {
+                "role": {
                     "type": "string"
                 },
                 "username": {

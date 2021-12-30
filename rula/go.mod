@@ -6,7 +6,6 @@ require (
 	github.com/asaskevich/govalidator v0.0.0-20210307081110-f21760c49a8d
 	github.com/cucumber/godog v0.12.2
 	github.com/go-chi/chi/v5 v5.0.7
-	github.com/go-chi/cors v1.2.0
 	github.com/go-openapi/errors v0.20.1
 	github.com/go-openapi/runtime v0.20.0
 	github.com/go-openapi/strfmt v0.20.3
