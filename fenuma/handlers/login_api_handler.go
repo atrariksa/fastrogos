@@ -41,6 +41,15 @@ func (lah *LoginAPIHandler) Handle(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	resp = lah.Process(r.Context(), req)
+	if resp.(models.Response).HttpCode == http.StatusOK {
+		reqRedirect, err := http.NewRequest(http.MethodGet, "http://localhost:7389/dashboard", nil)
+		if err != nil {
+			lah.Write(w, models.ErrGeneralResp().HttpCode, models.ErrGeneralResp())
+			return
+		}
+		http.Redirect(w, reqRedirect, reqRedirect.URL.String(), http.StatusTemporaryRedirect)
+		return
+	}
 	lah.Write(w, resp.(models.Response).HttpCode, resp)
 	return
 }

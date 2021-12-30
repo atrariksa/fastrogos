@@ -31,5 +31,7 @@ func (las *LoginAPIService) Process(ctx context.Context, req interface{}) interf
 	if err != nil {
 		return models.ErrGeneralResp()
 	}
-	return models.SuccessResp(http.StatusOK, resp.Payload.Message)
+	res := models.SuccessResp(http.StatusOK, resp.Payload.Message)
+	res.Data = resp.Payload.Data
+	return res
 }
