@@ -31,6 +31,7 @@ func (lh *LoginHandler) SetService(svc services.ILoginService) {
 // @Param   models.LoginReq  body models.LoginReq true  "LoginReq"
 // @Success 200 {object} models.Response
 // @Failure 400 {object} models.Response
+// @Failure 401 {object} models.Response
 // @Router /login/ [post]
 func (lh *LoginHandler) Handle(w http.ResponseWriter, r *http.Request) {
 	var req models.LoginReq

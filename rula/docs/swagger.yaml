@@ -86,6 +86,10 @@ paths:
           description: Bad Request
           schema:
             $ref: '#/definitions/models.Response'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.Response'
       summary: Login
   /user/:
     delete:

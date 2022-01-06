@@ -82,6 +82,12 @@ var doc = `{
                         "schema": {
                             "$ref": "#/definitions/models.Response"
                         }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
                     }
                 }
             }
