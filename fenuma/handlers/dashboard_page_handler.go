@@ -37,7 +37,7 @@ func (lp *DashboardPageHandler) Handle(w http.ResponseWriter, r *http.Request) {
 	dashboardPage := DashboardPage{Title: DASHBOARD_PAGE_TITLE}
 	dashboardPage.UserMenu = `
 	<li>
-		<a href="#">
+		<a href="#" id="id-manage-user">
 			<span class="icon material-icons md-18">manage_accounts</span>
 			<span class="title">User</span>
 		</a>
