@@ -7,6 +7,7 @@ import (
 	"github.com/atrariksa/fastrogos/fenuma/configs"
 	"github.com/atrariksa/fastrogos/fenuma/handlers/client_services"
 	"github.com/atrariksa/fastrogos/fenuma/models"
+	rulaOp "github.com/atrariksa/fastrogos/rula/client/operations"
 	"github.com/sirupsen/logrus"
 )
 
@@ -29,6 +30,20 @@ func (las *LoginAPIService) Process(ctx context.Context, req interface{}) interf
 	loginReq := req.(models.LoginReq)
 	resp, err := client_services.Login(loginReq)
 	if err != nil {
+		if v, ok := err.(*rulaOp.LoginUnauthorized); ok {
+			return models.Response{
+				HttpCode: http.StatusUnauthorized,
+				Code:     v.Payload.Code,
+				Message:  v.Payload.Message,
+			}
+		}
+		if v, ok := err.(*rulaOp.LoginBadRequest); ok {
+			return models.Response{
+				HttpCode: http.StatusBadRequest,
+				Code:     v.Payload.Code,
+				Message:  v.Payload.Message,
+			}
+		}
 		return models.ErrGeneralResp()
 	}
 	res := models.SuccessResp(http.StatusOK, resp.Payload.Message)

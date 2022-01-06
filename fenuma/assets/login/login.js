@@ -1,6 +1,5 @@
 const loginForm = document.getElementById("login-form");
 const loginButton = document.getElementById("login-form-submit");
-//const loginErrorMsg = document.getElementById("login-error-msg");
 const loginErrorMsgHolder = document.getElementById("login-error-msg-holder")
 
 loginButton.addEventListener("click", (e) => {
@@ -22,15 +21,21 @@ loginButton.addEventListener("click", (e) => {
     .then(response => {
         if (response.redirected) {
             window.location.href = response.url;
-        }
-        body = response.body
-        let errorMessageP = document.createElement("p")
-        errorMessageP.setAttribute("id", "login-error-msg")
-        let errorMessageString = document.createTextNode(body.response_message)
-        errorMessageP.append(errorMessageString)
-        childCount = loginErrorMsgHolder.childElementCount
-        if (childCount===0) {
-            loginErrorMsgHolder.append(errorMessageP)
+        } else {
+            response.json().then(body =>{
+                let errorMessageP = document.createElement("p")
+                errorMessageP.setAttribute("id", "login-error-msg")
+                let errorMessageString = document.createTextNode(body.message)
+                errorMessageP.append(errorMessageString)
+                childCount = loginErrorMsgHolder.childElementCount
+                if (childCount===0) {
+                    loginErrorMsgHolder.append(errorMessageP)
+                } else {
+                    toDelete = loginErrorMsgHolder.children[0]
+                    loginErrorMsgHolder.removeChild(toDelete)
+                    loginErrorMsgHolder.append(errorMessageP)
+                }
+            })
         }
     })
     .catch(function(err) {

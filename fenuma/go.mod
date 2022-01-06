@@ -4,7 +4,7 @@ go 1.16
 
 require (
 	github.com/atrariksa/api_utils v0.0.1
-	github.com/atrariksa/fastrogos/rula v0.0.0-20211220035024-cca969fa08c1
+	github.com/atrariksa/fastrogos/rula v0.0.0-20220106113021-a56f784f83a8
 	github.com/go-chi/chi/v5 v5.0.7
 	github.com/go-chi/cors v1.2.0
 	github.com/go-chi/docgen v1.2.0
