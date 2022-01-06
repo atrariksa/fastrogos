@@ -35,6 +35,12 @@ func (o *LoginReader) ReadResponse(response runtime.ClientResponse, consumer run
 			return nil, err
 		}
 		return nil, result
+	case 401:
+		result := NewLoginUnauthorized()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -93,6 +99,38 @@ func (o *LoginBadRequest) GetPayload() *models.ModelsResponse {
 }
 
 func (o *LoginBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.ModelsResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewLoginUnauthorized creates a LoginUnauthorized with default headers values
+func NewLoginUnauthorized() *LoginUnauthorized {
+	return &LoginUnauthorized{}
+}
+
+/* LoginUnauthorized describes a response with status code 401, with default header values.
+
+Unauthorized
+*/
+type LoginUnauthorized struct {
+	Payload *models.ModelsResponse
+}
+
+func (o *LoginUnauthorized) Error() string {
+	return fmt.Sprintf("[POST /login/][%d] loginUnauthorized  %+v", 401, o.Payload)
+}
+func (o *LoginUnauthorized) GetPayload() *models.ModelsResponse {
+	return o.Payload
+}
+
+func (o *LoginUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.ModelsResponse)
 
